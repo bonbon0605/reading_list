@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resource :login, :only => [:show]
   resources :title_lists
 
   root to: 'title_lists#index'
