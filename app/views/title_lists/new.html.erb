@@ -1,0 +1,8 @@
+<h1>リストの追加画面</h1>
+
+<% @items.each do |item| %>
+  <li>
+    <img src="<%= item.get("MediumImage/URL") %>">
+    <%== item.get("ItemAttributes/Title") %>
+  </li>
+<% end %>
