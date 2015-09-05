@@ -1,5 +1,5 @@
 class TitleListsController < ApplicationController
-#  before_action :authenticate
+  before_action :authenticate
 
   def index
     @title_list = TitleList.all
