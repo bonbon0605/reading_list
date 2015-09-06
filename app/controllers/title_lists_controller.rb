@@ -6,18 +6,20 @@ class TitleListsController < ApplicationController
   end
 
   def new
-    res = Amazon::Ecs.item_search(
-      "",
-      :title => '僕だけがいない街',
-      :sort => 'titlerank',
-      :tag_sort => 'Name',
-      :browse_node => '2250738051'
-    )
+      @keyword = params[:keyword]
+      unless @keyword.nil?
+        res = Amazon::Ecs.item_search(
+          "",
+          :title => @keyword,
+          :sort => 'titlerank',
+          :tag_sort => 'Name',
+          :browse_node => '2250738051'
+        )
 
-     @asins = []
-     res.items.each{|item| @asins << item.get('ASIN')}
-     @items = Amazon::Ecs.item_lookup(@asins.join(','),:response_group => 'Large').items
-
+         @asins = []
+         res.items.each{|item| @asins << item.get('ASIN')}
+         @items = Amazon::Ecs.item_lookup(@asins.join(','),:response_group => 'Large').items
+      end
    #@title_list = current_user.created_title_lists.build
   end
 

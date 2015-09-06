@@ -1,8 +1,17 @@
 <h1>リストの追加画面</h1>
 
+<p>検索</p>
+<%= form_tag(new_title_list_path,method: :get) do %>
+  <%= text_field_tag(:keyword) %>
+  <%= submit_tag("アマゾンで検索") %>
+<% end %>
+
+<% if @items && @items.size > 0 %>
+<p>検索結果</p>
 <% @items.each do |item| %>
   <li>
     <img src="<%= item.get("MediumImage/URL") %>">
     <%== item.get("ItemAttributes/Title") %>
   </li>
+<% end %>
 <% end %>
